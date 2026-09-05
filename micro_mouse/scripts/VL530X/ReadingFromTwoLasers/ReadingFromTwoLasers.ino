@@ -4,15 +4,21 @@
 VL53L0X firstSensor;
 VL53L0X secondSensor;
 
-int xshut=4;
+int secondXshut=4;
+int firstXshut=5;
 
 void setup() {
   Serial.begin(115200);
   Wire.begin();
 
-  pinMode(xshut,OUTPUT);
-  digitalWrite(xshut, LOW);
+  pinMode(secondXshut,OUTPUT);
+  digitalWrite(secondXshut, LOW);
   delay(20);
+
+  pinMode(firstXshut,OUTPUT);
+  digitalWrite(firstXshut, LOW);
+  delay(20);
+  digitalWrite(firstXshut, HIGH);
 
   if(!firstSensor.init())
   {
@@ -23,7 +29,7 @@ void setup() {
     firstSensor.setAddress(0x30);
     
     delay(20);
-    digitalWrite(xshut, HIGH);
+    digitalWrite(secondXshut, HIGH);
       
     if(!secondSensor.init())
     {
